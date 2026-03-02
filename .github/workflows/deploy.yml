@@ -52,5 +52,6 @@ jobs:
             docker stop node-secret-service || true
             docker rm node-secret-service || true
             docker run -d --name node-secret-service -p 80:3000 -e SECRET_MESSAGE="${{ secrets.SECRET_MESSAGE }}" -e USERNAME="${{ secrets.USERNAME }}" -e PASSWORD="${{ secrets.PASSWORD }}" ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/node-secret-service:latest
+            sleep 5 
             curl -f http://localhost/health || exit 1 
 
